@@ -1,0 +1,27 @@
+{
+  "translation": {
+    "tabs": {
+      "tab1": "Tab One",
+      "tab2": "Tab Two"
+    },
+    "tab1": {
+      "increment": "increment"
+    },
+    "tab2": {
+      "heading": {
+        "large": "Heading Large",
+        "medium": "Heading Medium",
+        "small": "Heading Small"
+      },
+      "label": {
+        "large": "Label Large",
+        "medium": "Label Medium",
+        "small": "Label Small"
+      }
+    },
+    "modal": {
+      "title": "Modal Title",
+      "body": "Modal Body"
+    }
+  }
+}

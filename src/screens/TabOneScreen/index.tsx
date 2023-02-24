@@ -5,6 +5,7 @@ import {useAppDispatch, useAppSelector} from '@app/redux/hooks';
 import {increment} from '@app/redux/reducers/counter';
 import {RootTabScreenProps} from '@app/types/global';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 
 export default function TabOneScreen({
   navigation,
@@ -12,11 +13,13 @@ export default function TabOneScreen({
   console.log({navigation});
   const count = useAppSelector(state => state.counter.value);
   const dispatch = useAppDispatch();
+  const {t} = useTranslation();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{count}</Text>
       <TouchableOpacity onPress={() => dispatch(increment())}>
-        <Text>Increment</Text>
+        <Text> {t('tab1.increment')}</Text>
       </TouchableOpacity>
     </View>
   );

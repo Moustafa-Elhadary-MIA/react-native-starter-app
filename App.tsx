@@ -12,7 +12,9 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {StyleSheet} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Provider as PaperProvider} from 'react-native-paper';
+import {Provider} from 'react-redux';
 import {SnackbarProvider} from './src/contexts/SnackBarContext';
+import {store} from './src/redux/store';
 
 const queryClient = new QueryClient();
 
@@ -25,20 +27,22 @@ export default function App() {
   } else {
     return (
       <QueryClientProvider client={queryClient}>
-        <GestureHandlerRootView style={styles.gestureHandler}>
-          <PaperProvider>
-            <SafeAreaProvider>
-              <SnackbarProvider>
-                <PortalProvider>
-                  <>
-                    <Navigation colorScheme={colorScheme} />
-                    <StatusBar />
-                  </>
-                </PortalProvider>
-              </SnackbarProvider>
-            </SafeAreaProvider>
-          </PaperProvider>
-        </GestureHandlerRootView>
+        <Provider store={store}>
+          <GestureHandlerRootView style={styles.gestureHandler}>
+            <PaperProvider>
+              <SafeAreaProvider>
+                <SnackbarProvider>
+                  <PortalProvider>
+                    <>
+                      <Navigation colorScheme={colorScheme} />
+                      <StatusBar />
+                    </>
+                  </PortalProvider>
+                </SnackbarProvider>
+              </SafeAreaProvider>
+            </PaperProvider>
+          </GestureHandlerRootView>
+        </Provider>
       </QueryClientProvider>
     );
   }

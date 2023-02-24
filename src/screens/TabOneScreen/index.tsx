@@ -1,23 +1,23 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 
-import React from 'react';
-import EditScreenInfo from '@app/components/EditScreenInfo';
 import {Text, View} from '@app/components/Themed';
+import {useAppDispatch, useAppSelector} from '@app/redux/hooks';
+import {increment} from '@app/redux/reducers/counter';
 import {RootTabScreenProps} from '@app/types/global';
+import React from 'react';
 
 export default function TabOneScreen({
   navigation,
 }: RootTabScreenProps<'TabOne'>) {
   console.log({navigation});
+  const count = useAppSelector(state => state.counter.value);
+  const dispatch = useAppDispatch();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <Text style={styles.title}>{count}</Text>
+      <TouchableOpacity onPress={() => dispatch(increment())}>
+        <Text>Increment</Text>
+      </TouchableOpacity>
     </View>
   );
 }

@@ -7,6 +7,10 @@
     "esModuleInterop": true,
     /* Completeness */
     "skipLibCheck": true                               /* Skip type checking all .d.ts files. */,
+    "baseUrl": ".",
+    "paths" : {
+      "@app/*": ["./src/*"],
+    }
   },
-  "include": ["src", "custom.d.ts","node_modules/react-native-redash/lib/typescript/v1/index.d.ts"],  
+  "include": ["src", "custom.d.ts"],  
 }

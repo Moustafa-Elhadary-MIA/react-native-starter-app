@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import {SnackbarContextType} from '../types/SnackbarContext';
+import {SnackbarContextType} from '@app/types/SnackbarContext';
 
 export const SnackbarContext = createContext({} as SnackbarContextType);
 

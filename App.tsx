@@ -1,10 +1,20 @@
 import {StatusBar} from 'expo-status-bar';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import React from 'react';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+
+import React from 'react';
+
+import {PortalProvider} from '@gorhom/portal';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {StyleSheet} from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {Provider as PaperProvider} from 'react-native-paper';
+import {SnackbarProvider} from './contexts/SnackBarContext';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -14,10 +24,28 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
+      <QueryClientProvider client={queryClient}>
+        <GestureHandlerRootView style={styles.gestureHandler}>
+          <PaperProvider>
+            <SafeAreaProvider>
+              <SnackbarProvider>
+                <PortalProvider>
+                  <>
+                    <Navigation colorScheme={colorScheme} />
+                    <StatusBar />
+                  </>
+                </PortalProvider>
+              </SnackbarProvider>
+            </SafeAreaProvider>
+          </PaperProvider>
+        </GestureHandlerRootView>
+      </QueryClientProvider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  gestureHandler: {
+    flex: 1,
+  },
+});

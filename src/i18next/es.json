@@ -2,7 +2,8 @@
   "translation": {
     "tabs": {
       "tab1": "Tab One",
-      "tab2": "Tab Two"
+      "tab2": "Tab Two",
+      "tab3": "Tab Three"
     },
     "tab1": {
       "increment": "increment"
